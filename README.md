@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+# BUGS
+
+There is an error in time I create this app on angular when it is checking the style sheets.
+to fix or patch it I must modify a line on the following route:
+
+packages/angular/build/src/tools/vite/middlewares/assets-middleware.js
+
+<!-- // Shim the stylesheet if a component ID is provided
+            if (componentId.length > 0) {
+              // Validate component ID
+-              if (/^[_.\-\p{Letter}\d]+-c\d{9}$/u.test(componentId)) {
++              if (/^[_.\-\p{Letter}\d]+-c\d+$/u.test(componentId)) { -->
+
+you can see it on this rep:
+https://github.com/angular/angular-cli/pull/28658/commits/77781f027ce29412908cbd4b3affc1c00ed54746
