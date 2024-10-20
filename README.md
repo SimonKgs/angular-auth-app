@@ -1,35 +1,33 @@
 # AuthApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0-next.10.
+Dont use Angular CLI the first time you run the project, first you need to create the enviroment to do that follow these steps:
 
-## Development server
+## Initial configuration
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Copy the .env.template and rename to .env
+2. Fill the variables with your personal variables
+3. Create Angular envs using the following command:
+```
+npm run envs
+```
+It also will be executed automatically if you run start or build
+```
+npm start
+```
+or to production use
+```
+npm run build
+```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. Having the environment created, you can now run the app using angular CLI
+```
+ng serve -o
+```
 
 
-# BUGS
+# Errors
 
-There is an error in time I create this app on angular when it is checking the style sheets.
+There is an error on Angular in time I create this app, when it checks the style sheets.
 to fix or patch it I must modify a line on the following route:
 
 packages/angular/build/src/tools/vite/middlewares/assets-middleware.js
