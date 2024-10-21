@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth-service.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class RegisterPageComponent {
 
   private fb = inject(FormBuilder);
   private authService = inject( AuthService)
+  private router = inject(Router)
 
   public myForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -27,7 +29,7 @@ export class RegisterPageComponent {
   register() {
     
     if (this.myForm.get('password')?.value !== this.myForm.get('password2')?.value) {
-      console.log('Passwords must be equal');
+      Swal.fire('Error', 'Passwords must be equal', 'error')
       return
     }
   
@@ -35,7 +37,7 @@ export class RegisterPageComponent {
 
     this.authService.register( email!, name!, password! )
       .subscribe({
-        next: () => console.log("Everything ok"),
+        next: () => this.router.navigateByUrl('/dashboard'),
         error: ( message ) => {
           Swal.fire('Error', message, 'error')
         }
