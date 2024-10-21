@@ -16,4 +16,7 @@ export class DashboarLayoutComponent {
   //   return this.authService.currentUser();
   // }
 
+  onLogOut(){
+    this.authService.logout()
+  }
 }

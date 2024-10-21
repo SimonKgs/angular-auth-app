@@ -13,7 +13,7 @@ export class AuthService {
   private http = inject( HttpClient );
 
   private _currentUser = signal<User|null>(null);
-  private _authStatus = signal<AuthStatus>( AuthStatus.cheking );
+  private _authStatus = signal<AuthStatus>( AuthStatus.checking );
 
   // this two are to expose instead of the signals
   // remember a signal is like a function to get the value needs to be invoked()
@@ -42,7 +42,6 @@ export class AuthService {
       .pipe(
         map( ({ user, token }) => this.setAuthentication(user, token) ),
         catchError( err => throwError( () => err.error.message))
-
       )
   }
 
@@ -58,12 +57,14 @@ export class AuthService {
       )
   }
   
-  
   checkAuthStatus():Observable<boolean> {
     const url = `${this.baseUrl}/auth/check-token`
     const token = localStorage.getItem('token');
 
-    if (!token) return of(false);
+    if (!token) {
+      this.logout()
+      return of(false)
+    };
 
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }`);
@@ -78,4 +79,11 @@ export class AuthService {
         })
     )
   }
+
+  logout() {
+    localStorage.removeItem('token')
+    this._currentUser.set(null);
+    this._authStatus.set( AuthStatus.notAuthenticated )
+  }
+
 }

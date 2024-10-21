@@ -18,13 +18,13 @@ export class AppComponent {
   private router = inject( Router )
 
   public isChekingAuth = computed<boolean>( () => {
-    if ( this.authService.authStatus() === AuthStatus.cheking ) return true;
+    if ( this.authService.authStatus() === AuthStatus.checking ) return true;
     return false;
   })
 
   public authStatusChangeEffect = effect( () => {
     switch( this.authService.authStatus() ) {
-      case AuthStatus.cheking:
+      case AuthStatus.checking:
         return
       case AuthStatus.authenticated:
         this.router.navigateByUrl('/dashboard')
