@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth-service.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'register-page',
@@ -11,6 +14,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class RegisterPageComponent {
 
   private fb = inject(FormBuilder);
+  private authService = inject( AuthService)
 
   public myForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -26,8 +30,16 @@ export class RegisterPageComponent {
       console.log('Passwords must be equal');
       return
     }
-      
-    console.log( this.myForm.value );
+  
+    const { email, name, password }  = this.myForm.value; 
+
+    this.authService.register( email!, name!, password! )
+      .subscribe({
+        next: () => console.log("Everything ok"),
+        error: ( message ) => {
+          Swal.fire('Error', message, 'error')
+        }
+      })
 
   }
 
