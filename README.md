@@ -32,11 +32,12 @@ to fix or patch it I must modify a line on the following route:
 
 packages/angular/build/src/tools/vite/middlewares/assets-middleware.js
 
-<!-- // Shim the stylesheet if a component ID is provided
-            if (componentId.length > 0) {
+```
+            if (componentId.length > 0) 
               // Validate component ID
--              if (/^[_.\-\p{Letter}\d]+-c\d{9}$/u.test(componentId)) {
-+              if (/^[_.\-\p{Letter}\d]+-c\d+$/u.test(componentId)) { -->
+-              if (/^[_.\-\p{Letter}\d]+-c\d{9}$/u.test(componentId)) 
++              if (/^[_.\-\p{Letter}\d]+-c\d+$/u.test(componentId)) 
+```
 
 you can see it on this rep:
 https://github.com/angular/angular-cli/pull/28658/commits/77781f027ce29412908cbd4b3affc1c00ed54746
