@@ -1,34 +1,46 @@
 # AuthApp
 
-Dont use Angular CLI the first time you run the project, first you need to create the enviroment to do that follow these steps:
+This app demonstrates authentication practices using Angular as the frontend and NestJS as the backend. It serves as an example of how to use signals, computed properties, effects over signals, guards, services, .env files, and APIs, all within the new Angular paradigm. The project follows the latest changes in Angular's structure, including the use of standalone components and routes.
+
 
 ## Initial configuration
 
-1. Copy the .env.template and rename to .env
-2. Fill the variables with your personal variables
-3. Create Angular envs using the following command:
+Avoid using Angular CLI on the first run.
+
+Before using Angular CLI, you'll need to set up the environment. Follow these steps to get started:
+
+1. Copy the environment file:
+  Copy the .env.template and rename to .env
+
+2. Fill in the variables:
+  Update the .env file with your personal environment variables.
+
+3. Create Angular environments (optional):
+  Run the following command to generate Angular environment files:
 ```
 npm run envs
 ```
-It also will be executed automatically if you run start or build
+  This command will also be executed automatically when you run start or build
+
+4. Run the app:
 ```
 npm start
 ```
-or to production use
+  For a production build, use:
 ```
 npm run build
 ```
 
-5. Having the environment created, you can now run the app using angular CLI
+5. Run with Angular CLI:
+  Once the environment is set up, you can run the app using Angular CLI:
 ```
 ng serve -o
 ```
 
 
-# Errors
+## Errors
 
-There is an error on Angular in time I create this app, when it checks the style sheets.
-to fix or patch it I must modify a line on the following route:
+There is a known issue in Angular (at the time of creating this app) related to checking stylesheets. To fix or patch this issue, you need to modify a specific line at the following path:
 
 packages/angular/build/src/tools/vite/middlewares/assets-middleware.js
 
@@ -39,5 +51,5 @@ packages/angular/build/src/tools/vite/middlewares/assets-middleware.js
 +              if (/^[_.\-\p{Letter}\d]+-c\d+$/u.test(componentId)) 
 ```
 
-you can see it on this rep:
-https://github.com/angular/angular-cli/pull/28658/commits/77781f027ce29412908cbd4b3affc1c00ed54746
+For more details, you can view the repository here:
+[angular-cli](https://github.com/angular/angular-cli/pull/28658/commits/77781f027ce29412908cbd4b3affc1c00ed54746)
